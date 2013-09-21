@@ -5,4 +5,13 @@ class VotesController < ApplicationController
 		vote.save!
 		redirect_to(topics_path)
 	end
+
+	def destroy
+		topic = Topic.find(params[:topic_id])
+		vote = topic.votes.last
+		if vote
+			vote.destroy
+		end
+		redirect_to(topics_path)
+	end
 end
